@@ -19,14 +19,30 @@ namespace CompilerLibrary
 	/// <summary>
 	/// По регулярному выражению создается конечный автомат
 	/// "abc" 0 ---a----> 1 ---b----> 2 ---c--->3
+	/// "a*b" 0 ----->1----b--->2    1--a->1
 	/// </summary>
         /// <param name="pat">шаблон регулярного выражения</param>
         public Pattern (string pat)
         {
-            avtomat = new FiniteAvtomata();
-            for (int i =0; i < pat.Length; i++)
-                avtomat.Add(i, pat[i], i + 1);
-            avtomat.SetFinaleStates(new int[] { pat.Length });
+            avtomat = new FiniteAutomata();
+            int i = 0;
+            int state = 0;
+            while (i < pat.Length)
+            {
+                if (i + 1 < pat.Length && pat[i + 1] == '*')
+                {
+                    avtomat.Add(state, state + 1);
+                    avtomat.Add(state + 1, pat[i], state + 1);
+                    i += 2;
+                }
+                else
+                {
+                    avtomat.Add(state, pat[i], state + 1);
+                    i++;
+                }
+                state++;
+            }         
+            avtomat.SetFinaleStates(new int[] { state });
         }
 	
 	/// <summary>
