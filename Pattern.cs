@@ -49,13 +49,17 @@ namespace CompilerLibrary
 	/// Сопоставление строки с шаблоном регулярного выражения
 	/// </summary>
         /// <param name="s">строка для распознавания</param>
-        /// <returns>true - строка соответствует шаблону, false - не соответствует</returns>
+        /// <returns>индекс последнего символа, на котором закончилось успешное распознавание, -1 если неуспешное распознавание</returns>
         public bool Match(string s)
         {
             avtomat.Reset();
-            foreach (var c in s)
-                avtomat.NewSymbol(c);
-            return avtomat.Check();
+            for (int i = 0; i < s.Length; i++)
+            {
+                avtomat.NewSymbol(s[i]);
+                if (avtomat.Check()) return i;
+            }
+            if (avtomat.Check()) return s.Length - 1;
+            else return -1;
         }
     }
 }
