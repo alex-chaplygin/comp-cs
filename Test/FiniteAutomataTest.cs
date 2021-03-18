@@ -28,11 +28,11 @@ namespace CompilerLibrary
             finiteAvtomat.Add(0, 1);
             finiteAvtomat.Add(1, 'a', 1);
             finiteAvtomat.Add(1, 'b', 2);
-            finiteAvtomat.Add(0, 2);
-            finiteAvtomat.Add(2, 'd', 2);
-            finiteAvtomat.Add(2, 'e', 3);
+            finiteAvtomat.Add(0, 3);
+            finiteAvtomat.Add(3, 'd', 4);
+            finiteAvtomat.Add(4, 'e', 5);
 
-            finiteAvtomat.SetFinaleStates(new int[] { 2, 3 });
+            finiteAvtomat.SetFinaleStates(new int[] { 2, 5 });
             Assert.AreEqual(true, Run(finiteAvtomat, "ab"));
             Assert.AreEqual(true, Run(finiteAvtomat, "aaaaaaaaaaaaaaaaaab"));
             Assert.AreEqual(true, Run(finiteAvtomat, "b"));
