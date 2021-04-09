@@ -25,5 +25,23 @@ namespace Testing
             Assert.AreEqual(0, p.Match("b"));
             Assert.AreEqual(-1, p.Match("oooooppppmmmm"));
         }
+	[TestMethod]
+        public void Замыкание2()
+        {
+            Pattern p = new Pattern("ab*");
+            Assert.AreEqual(1, p.Match("abc"));
+            Assert.AreEqual(36, p.Match("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"));
+            Assert.AreEqual(0, p.Match("b"));
+            Assert.AreEqual(-1, p.Match("oooooppppmmmm"));
+        }
+        [TestMethod]
+        public void Замыкание3()
+        {
+            Pattern p = new Pattern("a*b*c");
+            Assert.AreEqual(2, p.Match("abc"));
+            Assert.AreEqual(37, p.Match("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabc"));
+            Assert.AreEqual(0, p.Match("b"));
+            Assert.AreEqual(0, p.Match(""));
+        }
     }
 }
