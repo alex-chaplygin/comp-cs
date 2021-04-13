@@ -37,7 +37,7 @@ namespace Testing
         [TestMethod]
         public void Замыкание3()
         {
-            Pattern p = new Pattern("a*b*c");
+            Pattern p = new Pattern("a*b*c*");
             Assert.AreEqual(2, p.Match("abc"));
             Assert.AreEqual(37, p.Match("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabc"));
             Assert.AreEqual(0, p.Match("b"));
