@@ -31,7 +31,7 @@ namespace Testing
             Pattern p = new Pattern("ab*");
             Assert.AreEqual(1, p.Match("abc"));
             Assert.AreEqual(36, p.Match("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"));
-            Assert.AreEqual(0, p.Match("b"));
+            Assert.AreEqual(0, p.Match("a"));
             Assert.AreEqual(-1, p.Match("oooooppppmmmm"));
         }
         [TestMethod]
